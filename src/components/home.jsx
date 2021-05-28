@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ItemCard from './itemCard';
+import CategorySection from './CategorySection';
 
 export default function Home() {
 	const [allData, setAllData] = useState([]);
@@ -37,10 +37,10 @@ export default function Home() {
 			<header>
 				<h1>E-commerce</h1>
 			</header>
-			<ItemCard category="Electronics" items={electronics} />
-			<ItemCard category="Jewelery" items={jewelery} />
-			<ItemCard category="Men's Clothing" items={menClothing} />
-			<ItemCard category="Women's Clothing" items={womenClothing} />
+			<CategorySection category="Electronics" items={electronics} />
+			<CategorySection category="Jewelery" items={jewelery} />
+			<CategorySection category="Men's Clothing" items={menClothing} />
+			<CategorySection category="Women's Clothing" items={womenClothing} />
 		</>
 	);
 }
