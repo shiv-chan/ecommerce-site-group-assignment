@@ -1,32 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import ItemDetail from './itemDetail';
+import ItemCard from './itemCard';
 
 export default function Home() {
-	const [allData, setAllData] = useState(null);
-    const [test, setTest] = useState('Some Items')
+	const [allData, setAllData] = useState([]);
+	const [electronics, setElectronics] = useState([]);
+	const [jewelery, setJewelery] = useState([]);
+	const [menClothing, setMenClothing] = useState([]);
+	const [womenClothing, setWomenClothing] = useState([]);
 
-    // fetchData();
+	function filterCategory(arr, categoryName) {
+		return arr.filter((obj) => obj.category === categoryName);
+	}
 
+	useEffect(() => {
+		fetch('https://fakestoreapi.com/products')
+			.then((res) => res.json())
+			.then((json) => {
+				setAllData(json);
+				setElectronics(filterCategory(json, 'electronics'));
+				setJewelery(filterCategory(json, 'jewelery'));
+				setMenClothing(filterCategory(json, "men's clothing"));
+				setWomenClothing(filterCategory(json, "women's clothing"));
+			})
+			.catch((err) => console.error(`Fetch Error: ${err}`));
+	}, []);
 
-    useEffect(async () => {
-		const response = await fetch('https://fakestoreapi.com/products');
-		const data = await response.json();
-
-		// setAllData(data);
-
-		// allData.map(item => console.log(item))
-		// export default allData;
-		// console.log(typeof JSON.stringify(data))
-		console.log(data)
-        
-    }, [])
-    
-	return (
+	return allData.length === 0 ? (
 		<>
-			{/* <p>{allData}</p> */}
-			<ItemDetail
-				product = {allData}
-			/>
+			<header>
+				<h1>E-commerce</h1>
+			</header>
+			<section>Loading...</section>
 		</>
-    )
+	) : (
+		<>
+			<header>
+				<h1>E-commerce</h1>
+			</header>
+			<ItemCard category="Electronics" items={electronics} />
+			<ItemCard category="Jewelery" items={jewelery} />
+			<ItemCard category="Men's Clothing" items={menClothing} />
+			<ItemCard category="Women's Clothing" items={womenClothing} />
+		</>
+	);
 }
