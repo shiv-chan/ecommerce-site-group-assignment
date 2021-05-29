@@ -2,38 +2,31 @@ import React, { useState, useEffect } from 'react';
 import ItemDetail from './itemDetail';
 
 export default function Home() {
-    const [allData, setAllData] = useState(() => {
-        fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(data => {
-            // console.log(data)
-            // setAllData(data)
-            // console.log(allData)
-            return data;
-        })
-    });
-    
-
-    console.log(allData)
-    
+	const [allData, setAllData] = useState(null);
+    const [test, setTest] = useState('Some Items')
 
     // fetchData();
 
 
-    // useEffect(() => {
-    //     if (!allData) {
-    //         fetch('https://fakestoreapi.com/products')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             // console.log(data)
-    //             setAllData(data)
-    //             console.log(allData)
-    //         })
-    //     }
+    useEffect(async () => {
+		const response = await fetch('https://fakestoreapi.com/products');
+		const data = await response.json();
+
+		// setAllData(data);
+
+		// allData.map(item => console.log(item))
+		// export default allData;
+		// console.log(typeof JSON.stringify(data))
+		console.log(data)
         
-    // })
+    }, [])
     
-    return(
-        <ItemDetail />
+	return (
+		<>
+			{/* <p>{allData}</p> */}
+			<ItemDetail
+				product = {allData}
+			/>
+		</>
     )
 }
