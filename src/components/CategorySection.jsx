@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemCard from './ItemCard';
 
 export default function CategorySection(props) {
 	// pick unique three number, and return them as an array
@@ -22,15 +23,13 @@ export default function CategorySection(props) {
 			{randThreeNums(props.items)
 				? randThreeNums(props.items).map((num) => {
 						return (
-							<article key={props.items[num].id}>
-								<img
-									src={props.items[num].image}
-									alt={props.items[num].title}
-									style={{ width: '200px', height: '200px' }}
-								/>
-								<h2>{props.items[num].title}</h2>
-								<h3>${props.items[num].price}</h3>
-							</article>
+							<ItemCard
+								key={props.items[num].id}
+								imgURL={props.items[num].image}
+								title={props.items[num].title}
+								imgSize={{ width: '200px', height: '200px' }}
+								price={props.items[num].price}
+							/>
 						);
 				  })
 				: ''}
