@@ -17,9 +17,8 @@ export default function Home() {
 
 	// Handle 'showDetail' status.
 	function handleShowDetail(event) {
-		setIndex(event.target.id);
+		setIndex(event.currentTarget.id);
 		setShowDetail(!showDetail);
-		console.log(event.target.id)
 	}
 
 
@@ -54,12 +53,16 @@ export default function Home() {
 						<CategorySection category="Jewelery" items={jewelery} onClick={ handleShowDetail } />
 						<CategorySection category="Men's Clothing" items={menClothing} onClick={ handleShowDetail } />
 						<CategorySection category="Women's Clothing" items={womenClothing} onClick={ handleShowDetail } />
-						{/* <button onClick={handleShowDetail}>Show Detail</button> */}
 				</>
 			)
 
 		) : (
-			<ItemDetail item={allData.filter(item=>item.id == index)[0]} />
+			<>
+				<header>
+					<h1>E-commerce</h1>
+				</header>
+				<ItemDetail item={allData.filter(item=>item.id == index)[0]} />
+			</>
 		)
 	)
 	
