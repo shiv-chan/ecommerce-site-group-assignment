@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { FaShoppingCart,FaUserCircle } from 'react-icons/fa';
 
 
-export default function Navigation() {
+export default function navbar() {
   return (
     <div className="navbar">
       <Navbar collapseOnSelect  expand='1g' bg="dark" variant="dark">
