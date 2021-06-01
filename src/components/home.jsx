@@ -1,38 +1,43 @@
-import React from 'react';
-import ItemCard from './ItemCard.jsx';
+import React, { useState, useEffect } from 'react';
+import CategorySection from './CategorySection';
+import Navigation from './Navigation';
 
-export default function CategorySection(props) {
-	// pick unique three number, and return them as an array
-	function randThreeNums(items) {
-		if (items.length !== 0) {
-			let nums = new Set();
-			while (nums.size !== 3) {
-				let randNum = Math.floor(Math.random() * items.length);
-				nums.add(randNum);
-			}
+export default function Home() {
+	const [allData, setAllData] = useState([]);
+	const [electronics, setElectronics] = useState([]);
+	const [jewelery, setJewelery] = useState([]);
+	const [menClothing, setMenClothing] = useState([]);
+	const [womenClothing, setWomenClothing] = useState([]);
 
-			return [...nums];
-		}
+	function filterCategory(arr, categoryName) {
+		return arr.filter((obj) => obj.category === categoryName);
 	}
 
-	console.log(randThreeNums(props.items));
+	useEffect(() => {
+		fetch('https://fakestoreapi.com/products')
+			.then((res) => res.json())
+			.then((json) => {
+				setAllData(json);
+				setElectronics(filterCategory(json, 'electronics'));
+				setJewelery(filterCategory(json, 'jewelery'));
+				setMenClothing(filterCategory(json, "men's clothing"));
+				setWomenClothing(filterCategory(json, "women's clothing"));
+			})
+			.catch((err) => console.error(`Fetch Error: ${err}`));
+	}, []);
 
-	return (
-		<section className="category-section">
-			<h1>{props.category}</h1>
-			{randThreeNums(props.items)
-				? randThreeNums(props.items).map((num) => {
-						return (
-							<ItemCard
-								key={props.items[num].id}
-								imgURL={props.items[num].image}
-								title={props.items[num].title}
-								imgSize={{ width: '200px', height: '200px' }}
-								price={props.items[num].price}
-							/>
-						);
-				  })
-				: ''}
-		</section>
+	return allData.length === 0 ? (
+		<>
+			<Navigation />
+			<section>Loading...</section>
+		</>
+	) : (
+		<>
+			<Navigation />
+			<CategorySection category="Electronics" items={electronics} />
+			<CategorySection category="Jewelery" items={jewelery} />
+			<CategorySection category="Men's Clothing" items={menClothing} />
+			<CategorySection category="Women's Clothing" items={womenClothing} />
+		</>
 	);
 }
