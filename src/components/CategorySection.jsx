@@ -40,6 +40,7 @@ export default function CategorySection(props) {
 													'object-fit': 'contain',
 												}}
 												price={props.items[num].price}
+												onClick={props.onClick}
 											/>
 										);
 								  })
