@@ -25,8 +25,4 @@ export default function ItemCard(props) {
 			</Card.Body>
 		</Card>
 	);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> navigation-review
