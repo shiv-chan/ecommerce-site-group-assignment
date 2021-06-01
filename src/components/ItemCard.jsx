@@ -6,6 +6,7 @@ export default function ItemCard(props) {
 	return (
 		<Card
 			key={props.key}
+			id={props.id}
 			className="shadow-sm"
 			style={{ cursor: 'pointer' }}
 			onClick={props.onClick}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
+import ItemDetail from './ItemDetail';
 
 export default function Home() {
 	const [allData, setAllData] = useState([]);
@@ -7,9 +8,17 @@ export default function Home() {
 	const [jewelery, setJewelery] = useState([]);
 	const [menClothing, setMenClothing] = useState([]);
 	const [womenClothing, setWomenClothing] = useState([]);
+	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
+	const [index, setIndex] = useState('');
 
 	function filterCategory(arr, categoryName) {
 		return arr.filter((obj) => obj.category === categoryName);
+	}
+
+	// Handle 'showDetail' status.
+	function handleShowDetail(event) {
+		setIndex(event.currentTarget.id);
+		setShowDetail(!showDetail);
 	}
 
 	useEffect(() => {
@@ -25,22 +34,47 @@ export default function Home() {
 			.catch((err) => console.error(`Fetch Error: ${err}`));
 	}, []);
 
-	return allData.length === 0 ? (
-		<>
-			<header>
-				<h1>E-commerce</h1>
-			</header>
-			<section>Loading...</section>
-		</>
+	return !showDetail ? (
+		allData.length === 0 ? (
+			<>
+				<header>
+					<h1>E-commerce</h1>
+				</header>
+				<section>Loading...</section>
+			</>
+		) : (
+			<>
+				<header>
+					<h1>E-commerce</h1>
+				</header>
+				<CategorySection
+					category="Electronics"
+					items={electronics}
+					onClick={(event) => handleShowDetail(event)}
+				/>
+				<CategorySection
+					category="Jewelery"
+					items={jewelery}
+					onClick={handleShowDetail}
+				/>
+				<CategorySection
+					category="Men's Clothing"
+					items={menClothing}
+					onClick={handleShowDetail}
+				/>
+				<CategorySection
+					category="Women's Clothing"
+					items={womenClothing}
+					onClick={handleShowDetail}
+				/>
+			</>
+		)
 	) : (
 		<>
 			<header>
 				<h1>E-commerce</h1>
 			</header>
-			<CategorySection category="Electronics" items={electronics} />
-			<CategorySection category="Jewelery" items={jewelery} />
-			<CategorySection category="Men's Clothing" items={menClothing} />
-			<CategorySection category="Women's Clothing" items={womenClothing} />
+			<ItemDetail item={allData.filter((item) => item.id == index)[0]} />
 		</>
 	);
 }
