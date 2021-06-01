@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
-import ItemDetail from './ItemDetail'
+import ItemDetail from './ItemDetail';
 
 export default function Home() {
 	const [allData, setAllData] = useState([]);
@@ -21,7 +21,6 @@ export default function Home() {
 		setShowDetail(!showDetail);
 	}
 
-
 	useEffect(() => {
 		fetch('https://fakestoreapi.com/products')
 			.then((res) => res.json())
@@ -35,36 +34,47 @@ export default function Home() {
 			.catch((err) => console.error(`Fetch Error: ${err}`));
 	}, []);
 
-	return (
-		!showDetail ? (
-			allData.length === 0 ? (
-				<>
-					<header>
-						<h1>E-commerce</h1>
-					</header>
-					<section>Loading...</section>
-				</>
-			) : (
-				<>
-					<header>
-						<h1>E-commerce</h1>
-					</header>
-						<CategorySection category="Electronics" items={electronics} onClick={ (event)=>handleShowDetail(event) } />
-						<CategorySection category="Jewelery" items={jewelery} onClick={ handleShowDetail } />
-						<CategorySection category="Men's Clothing" items={menClothing} onClick={ handleShowDetail } />
-						<CategorySection category="Women's Clothing" items={womenClothing} onClick={ handleShowDetail } />
-				</>
-			)
-
+	return !showDetail ? (
+		allData.length === 0 ? (
+			<>
+				<header>
+					<h1>E-commerce</h1>
+				</header>
+				<section>Loading...</section>
+			</>
 		) : (
 			<>
 				<header>
 					<h1>E-commerce</h1>
 				</header>
-				<ItemDetail item={allData.filter(item=>item.id == index)[0]} />
+				<CategorySection
+					category="Electronics"
+					items={electronics}
+					onClick={(event) => handleShowDetail(event)}
+				/>
+				<CategorySection
+					category="Jewelery"
+					items={jewelery}
+					onClick={handleShowDetail}
+				/>
+				<CategorySection
+					category="Men's Clothing"
+					items={menClothing}
+					onClick={handleShowDetail}
+				/>
+				<CategorySection
+					category="Women's Clothing"
+					items={womenClothing}
+					onClick={handleShowDetail}
+				/>
 			</>
 		)
-	)
-	
-	
+	) : (
+		<>
+			<header>
+				<h1>E-commerce</h1>
+			</header>
+			<ItemDetail item={allData.filter((item) => item.id == index)[0]} />
+		</>
+	);
 }
