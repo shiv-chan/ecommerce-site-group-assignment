@@ -13,7 +13,6 @@ import {
 export default function Navigation() {
 	return (
 		<>
-
 			<Container fluid className="p-0">
 				<Navbar
 					collapseOnSelect
@@ -43,4 +42,3 @@ export default function Navigation() {
 		</>
 	);
 }
-
