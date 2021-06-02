@@ -3,6 +3,7 @@ import ItemCard from './ItemCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './CategorySection.css';
 
 export default function CategorySection(props) {
 	// pick unique three number, and return them as an array

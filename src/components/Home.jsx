@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
 import ItemDetail from './ItemDetail';
+import Navigation from './Navigation';
 
 export default function Home() {
 	const [allData, setAllData] = useState([]);
@@ -45,7 +46,7 @@ export default function Home() {
 		) : (
 			<>
 				<header>
-					<h1>E-commerce</h1>
+					<Navigation />
 				</header>
 				<CategorySection
 					category="Electronics"
