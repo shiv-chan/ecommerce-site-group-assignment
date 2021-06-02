@@ -18,16 +18,17 @@ export default function Navigation() {
 					expand="lg"
 					bg="dark"
 					variant="dark"
-					sticky="top"
+					fixed="top"
+					id="navbar"
 				>
-					<Navbar.Brand href="#home">Cornerstone Mart</Navbar.Brand>
+					<Navbar.Brand href="#">Cornerstone Mart</Navbar.Brand>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav className="me-auto">
 							<Nav.Link href="#Electronics">Electronics</Nav.Link>
 							<Nav.Link href="#Jewelery">Jewelery</Nav.Link>
-							<Nav.Link href="#Men">Men's clothing</Nav.Link>
-							<Nav.Link href="#Women">Women's clothing</Nav.Link>
+							<Nav.Link href="#Men's Clothing">Men's clothing</Nav.Link>
+							<Nav.Link href="#Women's Clothing">Women's clothing</Nav.Link>
 							<Nav.Link id="icon" href="#">
 								<FontAwesomeIcon icon={faShoppingCart} />
 							</Nav.Link>
