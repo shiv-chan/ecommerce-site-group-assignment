@@ -1,6 +1,5 @@
 import React from 'react';
 // import { Navbar, Nav } from 'react-bootstrap';
-import './Navigation.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
@@ -19,7 +18,7 @@ export default function Navigation() {
 					expand="lg"
 					bg="dark"
 					variant="dark"
-					fixed="top"
+					sticky="top"
 				>
 					<Navbar.Brand href="#home">Cornerstone Mart</Navbar.Brand>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -29,10 +28,10 @@ export default function Navigation() {
 							<Nav.Link href="#Jewelery">Jewelery</Nav.Link>
 							<Nav.Link href="#Men">Men's clothing</Nav.Link>
 							<Nav.Link href="#Women">Women's clothing</Nav.Link>
-							<Nav.Link id="Cart" href="#Cart">
+							<Nav.Link id="icon" href="#">
 								<FontAwesomeIcon icon={faShoppingCart} />
 							</Nav.Link>
-							<Nav.Link id="User" href="#User">
+							<Nav.Link id="icon" href="#">
 								<FontAwesomeIcon icon={faUserCircle} />
 							</Nav.Link>
 						</Nav>

@@ -4,7 +4,13 @@ import Card from 'react-bootstrap/Card';
 
 export default function ItemCard(props) {
 	return (
-		<Card key={props.key} className="shadow-sm">
+		<Card
+			key={props.key}
+			id={props.id}
+			className="shadow-sm"
+			style={{ cursor: 'pointer' }}
+			onClick={props.onClick}
+		>
 			<Card.Img
 				className="p-3"
 				variant="top"

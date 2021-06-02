@@ -33,6 +33,7 @@ export default function CategorySection(props) {
 										return (
 											<ItemCard
 												key={props.items[num].id}
+												id={props.items[num].id}
 												imgURL={props.items[num].image}
 												title={props.items[num].title}
 												imgSize={{
@@ -41,6 +42,7 @@ export default function CategorySection(props) {
 													'object-fit': 'contain',
 												}}
 												price={props.items[num].price}
+												onClick={props.onClick}
 											/>
 										);
 								  })
