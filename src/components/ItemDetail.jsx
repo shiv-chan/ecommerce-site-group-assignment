@@ -21,10 +21,16 @@ function ItemDetail(props) {
 				className='mx-auto justify-content-between'
 				style={{
 					'width': '80%',
-					'height': '80vh'
+					'height': '80vh',
+					'margin-top': '120px'
 				}}
 			>
-				<Col md={5}>
+				<Col
+					md={5}
+					style={{
+						// 'height': '100%'
+					}}
+				>
 					<Row className='justify-content-center mb-4'>
 						<Image
 							style={{
@@ -55,29 +61,41 @@ function ItemDetail(props) {
 								src={props.item.image} rounded />
 					</Row>
 				</Col>
-				<Col md={5}>
+				<Col md={6}>
 					<Card
 						className='d-flex flex-column p-3'
 						style={{
-							'height': '800px'
+							'max-height': '750px'
 						}}
 					>
 						<Card.Body>
 							<Card.Title
 								style={{
-									'margin-bottom': '30px'
+									'margin-bottom': '30px',
+									'font-size': '30px'
+									
 								}}
 							>{props.item.title}</Card.Title>
 							<Card.Subtitle
 								style={{
-									'margin-bottom': '10px'
+									'margin-bottom': '10px',
+									'font-size': '15px'
 								}}
-							>{props.item.category}</Card.Subtitle>
-							<Card.Text>${props.item.price}</Card.Text>
+							>{props.item.category}</Card.Subtitle>
 							<Card.Text
 								style={{
+									'font-size': '30px'
+								}}
+							>${props.item.price}</Card.Text>
+							<Card.Text
+								style={{
+									// 'display': 'inline-block',
+									// 'width': '100%',
+									// 'text-overflow': 'ellipsis',
+									// 'white-space': 'nowrap',
 									'overflow': 'hidden',
-									'height': '250px'
+									'max-height': '250px',
+									'font-size': '13px'
 								}}
 							>{props.item.description}</Card.Text>
 						</Card.Body>
