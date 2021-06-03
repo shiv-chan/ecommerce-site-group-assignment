@@ -39,7 +39,7 @@ export default function Home() {
 		allData.length === 0 ? (
 			<>
 				<header>
-					<h1>E-commerce</h1>
+					<Navigation />
 				</header>
 				<section>Loading...</section>
 			</>
@@ -73,7 +73,7 @@ export default function Home() {
 	) : (
 		<>
 			<header>
-				<h1>E-commerce</h1>
+				<Navigation />
 			</header>
 			<ItemDetail item={allData.filter((item) => item.id == index)[0]} />
 		</>

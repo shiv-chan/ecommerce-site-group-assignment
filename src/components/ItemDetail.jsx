@@ -76,7 +76,8 @@ function ItemDetail(props) {
 							<Card.Text>${props.item.price}</Card.Text>
 							<Card.Text
 								style={{
-									'overflow': 'hidden'
+									'overflow': 'hidden',
+									'height': '250px'
 								}}
 							>{props.item.description}</Card.Text>
 						</Card.Body>
