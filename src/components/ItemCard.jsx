@@ -2,6 +2,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+
+
 export default function ItemCard(props) {
 	return (
 		<Card
@@ -24,7 +26,7 @@ export default function ItemCard(props) {
 					<Card.Subtitle className="mb-2 text-muted">
 						${props.price}
 					</Card.Subtitle>
-					<Button variant="primary" className="d-block m-auto rounded-pill">
+					<Button type="button" onclick="addToCart()" variant="primary" className="d-block m-auto rounded-pill">
 						Add to Cart
 					</Button>
 				</div>

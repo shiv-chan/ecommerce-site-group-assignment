@@ -3,7 +3,6 @@ import ItemCard from './ItemCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './CategorySection.css';
 
 export default function CategorySection(props) {
 	// pick unique three number, and return them as an array
@@ -23,7 +22,7 @@ export default function CategorySection(props) {
 
 	return (
 		<section className="category-section">
-			<h1>{props.category}</h1>
+			<h1 style={{ marginTop:'5%' }}>{props.category}</h1>
 			<Container fluid>
 				<Row className="justify-content-center align-items-center card-deck">
 					<Col>
