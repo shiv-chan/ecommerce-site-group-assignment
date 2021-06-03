@@ -79,9 +79,6 @@ export default function Home() {
 		)
 	) : (
 		<>
-			<header>
-				<Navigation />
-			</header>
 			<ItemDetail item={allData.filter((item) => item.id == index)[0]} />
 		</>
 	);

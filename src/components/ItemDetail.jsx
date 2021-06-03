@@ -9,13 +9,21 @@ import {
 	Card,
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navigation from './Navigation';
 
 function ItemDetail(props) {
+	const [itemCount, setItemCount] = useState(null)
 	const [qty, setQty] = useState(1);
 
-	const handleAddToCart = () => {};
+	const handleAddToCart = () => {
+		setItemCount(qty)
+	};
 
 	return (
+		<>
+			<Navigation
+				itemCount={itemCount}
+			/>
 		<Container fluid >
 			<Row
 				className='mx-auto justify-content-between'
@@ -108,6 +116,7 @@ function ItemDetail(props) {
 							<Form.Group controlId='qty' className='w-50'>
 								<Form.Label>Qty: </Form.Label>
 								<Form.Control
+									size='sm'
 									type='number'
 									defaultValue={1}
 									onChange={() => setQty()}
@@ -116,7 +125,7 @@ function ItemDetail(props) {
 							{(props.item.category === "men's clothing" || props.item.category === "women's clothing") &&
 								<Form.Group controlId="size">
 									<Form.Label>Size: </Form.Label>
-									<Form.Control as="select" defaultValue='m'>
+									<Form.Control as="select" size='sm' defaultValue='m'>
 										<option value="xs">XS</option>
 										<option value="s">S</option>
 										<option value="m">M</option>
@@ -138,7 +147,8 @@ function ItemDetail(props) {
 					</Card>
 				</Col>
 			</Row>
-		</Container>
+			</Container>
+			</>
 	);
 }
 

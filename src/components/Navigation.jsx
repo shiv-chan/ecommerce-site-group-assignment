@@ -7,8 +7,9 @@ import Cart from './Cart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-export default function Navigation() {
+export default function Navigation(props) {
 	const [isToggle, setToggle] = useState(false);
+	const [itemCout, setItemCount] = useState(props.count)
 
 	return (
 		<>
