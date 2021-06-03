@@ -21,8 +21,8 @@ export default function CategorySection(props) {
 	console.log(randThreeNums(props.items));
 
 	return (
-		<section className="category-section">
-			<h1 style={{ marginTop:'5%' }}>{props.category}</h1>
+		<section id={props.category} style={{ 'padding-top': '56px' }}>
+			<h1>{props.category}</h1>
 			<Container fluid>
 				<Row className="justify-content-center align-items-center card-deck">
 					<Col>

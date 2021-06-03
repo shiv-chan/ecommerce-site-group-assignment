@@ -48,26 +48,33 @@ export default function Home() {
 				<header>
 					<Navigation />
 				</header>
-				<CategorySection
-					category="Electronics"
-					items={electronics}
-					onClick={(event) => handleShowDetail(event)}
-				/>
-				<CategorySection
-					category="Jewelery"
-					items={jewelery}
-					onClick={handleShowDetail}
-				/>
-				<CategorySection
-					category="Men's Clothing"
-					items={menClothing}
-					onClick={handleShowDetail}
-				/>
-				<CategorySection
-					category="Women's Clothing"
-					items={womenClothing}
-					onClick={handleShowDetail}
-				/>
+				<section
+					data-bs-spy="scroll"
+					data-bs-target="#navbar"
+					data-bs-offset="56"
+					tabindex="0"
+				>
+					<CategorySection
+						category="Electronics"
+						items={electronics}
+						onClick={(event) => handleShowDetail(event)}
+					/>
+					<CategorySection
+						category="Jewelery"
+						items={jewelery}
+						onClick={handleShowDetail}
+					/>
+					<CategorySection
+						category="Men's Clothing"
+						items={menClothing}
+						onClick={handleShowDetail}
+					/>
+					<CategorySection
+						category="Women's Clothing"
+						items={womenClothing}
+						onClick={handleShowDetail}
+					/>
+				</section>
 			</>
 		)
 	) : (

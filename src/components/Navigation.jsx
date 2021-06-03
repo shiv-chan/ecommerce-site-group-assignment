@@ -21,10 +21,9 @@ export default function Navigation() {
 					bg="dark"
 					variant="dark"
 					fixed="top"
-					Width='100%'
-					
+					id="navbar"
 				>
-					<Navbar.Brand href="#home">Cornerstone Mart</Navbar.Brand>
+					<Navbar.Brand href="#">Cornerstone Mart</Navbar.Brand>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav"  style={{ textAlign:'left' }}>
 						<Nav className="me-auto">
