@@ -30,8 +30,8 @@ export default function Navigation() {
 						<Nav className="me-auto">
 							<Nav.Link href="#Electronics">Electronics</Nav.Link>
 							<Nav.Link href="#Jewelery">Jewelery</Nav.Link>
-							<Nav.Link href="#Men">Men's clothing</Nav.Link>
-							<Nav.Link href="#Women">Women's clothing</Nav.Link>
+							<Nav.Link href="#Men's Clothing">Men's Clothing</Nav.Link>
+							<Nav.Link href="#Women's Clothing">Women's Clothing</Nav.Link>
 							<Nav.Link id="Cart">
 								<Cart 
 									isToggle={isToggle}
