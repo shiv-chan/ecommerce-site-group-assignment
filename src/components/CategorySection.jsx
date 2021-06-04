@@ -3,6 +3,8 @@ import ItemCard from './ItemCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default function CategorySection(props) {
 	// pick unique three number, and return them as an array
@@ -18,41 +20,39 @@ export default function CategorySection(props) {
 		}
 	}
 
-	console.log(randThreeNums(props.items));
+	// console.log(randThreeNums(props.items));
 
 	return (
 		<section id={props.category} style={{ 'padding-top': '56px' }}>
-			<h1>{props.category}</h1>
-			<Container fluid>
-				<Row className="justify-content-center align-items-center card-deck">
-					<Col>
-						<div className="card-deck">
-							{randThreeNums(props.items)
-								? randThreeNums(props.items).map((num) => {
-										return (
-											<ItemCard
-												key={props.items[num].id}
-												id={props.items[num].id}
-												imgURL={props.items[num].image}
-												title={props.items[num].title}
-												imgSize={{
-													width: '100%',
-													height: '70%',
-													'object-fit': 'contain',
-												}}
-												price={props.items[num].price}
-												onClick={props.onClick}
-											/>
-										);
-								  })
-								: ''}
-						</div>
-					</Col>
-					<Col md={'auto'}>
-						<span>See More</span>
-					</Col>
-				</Row>
-			</Container>
+			<LinkContainer to={props.link} style={{ cursor: 'pointer' }}>
+				<h1 className="m-2">{props.category}</h1>
+			</LinkContainer>
+			<Row xs={1} md={2} lg={4}>
+				{randThreeNums(props.items)
+					? randThreeNums(props.items).map((num) => {
+							return (
+								<Col style={{ margin: '1rem 0' }}>
+									<ItemCard
+										key={props.items[num].id}
+										id={props.items[num].id}
+										imgURL={props.items[num].image}
+										title={props.items[num].title}
+										imgSize={{
+											width: '100%',
+											height: '70%',
+											'object-fit': 'contain',
+										}}
+										price={props.items[num].price}
+										onClick={props.onClick}
+									/>
+								</Col>
+							);
+					  })
+					: ''}
+				<Col className="align-self-center text-center">
+					<Link to={props.link}>See More</Link>
+				</Col>
+			</Row>
 		</section>
 	);
 }

@@ -43,49 +43,56 @@ export default function Home() {
 
 	return !showDetail ? (
 		allData.length === 0 ? (
-				<>
-					<header>
-						<Navigation />
-					</header>
-					<section>Loading...</section>
-				</>
-			) : (
-				<>
-					<header>
-						<Navigation />
-					</header>
-					<section
-						data-bs-spy="scroll"
-						data-bs-target="#navbar"
-						data-bs-offset="56"
-						tabindex="0"
-					>
-						<CategorySection
-							category="Electronics"
-							items={electronics}
-							onClick={(event) => handleShowDetail(event)}
-						/>
-						<CategorySection
-							category="Jewelery"
-							items={jewelery}
-							onClick={handleShowDetail}
-						/>
-						<CategorySection
-							category="Men's Clothing"
-							items={menClothing}
-							onClick={handleShowDetail}
-						/>
-						<CategorySection
-							category="Women's Clothing"
-							items={womenClothing}
-							onClick={handleShowDetail}
-						/>
-					</section>
-				</>
-			)
+			<>
+				<header>
+					<Navigation />
+				</header>
+				<section>Loading...</section>
+			</>
+		) : (
+			<>
+				<header>
+					<Navigation />
+				</header>
+				<section
+					data-bs-spy="scroll"
+					data-bs-target="#navbar"
+					data-bs-offset="56"
+					tabindex="0"
+				>
+					<CategorySection
+						category="Electronics"
+						items={electronics}
+						onClick={(event) => handleShowDetail(event)}
+						link="/electronics"
+					/>
+					<CategorySection
+						category="Jewelery"
+						items={jewelery}
+						onClick={handleShowDetail}
+						link="/jewelery"
+					/>
+					<CategorySection
+						category="Men's Clothing"
+						items={menClothing}
+						onClick={handleShowDetail}
+						link="/men"
+					/>
+					<CategorySection
+						category="Women's Clothing"
+						items={womenClothing}
+						onClick={handleShowDetail}
+						link="/women"
+					/>
+				</section>
+			</>
+		)
 	) : (
 		<>
-			<ItemDetail item={allData.filter((item) => item.id == index)[0]} />
+			<header>
+				<Navigation />
+			</header>
+			<ItemDetail item={allData.filter((item) => item.id === index)[0]} />
 		</>
 	);
 }
