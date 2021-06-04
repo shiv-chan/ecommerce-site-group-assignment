@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
 import ItemDetail from './ItemDetail';
 import Navigation from './Navigation';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Rout,
-	Link
-} from 'react-router-dom'
 
 export default function Home() {
 	const [allData, setAllData] = useState([]);
@@ -25,7 +19,9 @@ export default function Home() {
 	// Handle 'showDetail' status.
 	function handleShowDetail(event) {
 		setIndex(event.currentTarget.id);
-		setShowDetail(!showDetail);
+		if (event.target.localName !== 'button') {
+			setShowDetail(!showDetail)
+		}
 	}
 
 	useEffect(() => {
@@ -39,6 +35,10 @@ export default function Home() {
 				setWomenClothing(filterCategory(json, "women's clothing"));
 			})
 			.catch((err) => console.error(`Fetch Error: ${err}`));
+		
+		for (let i = 0; i < allData.length; i++){
+			localStorage.setItem((i+1), 0)
+		}
 	}, []);
 
 	return !showDetail ? (
@@ -69,19 +69,19 @@ export default function Home() {
 					<CategorySection
 						category="Jewelery"
 						items={jewelery}
-						onClick={handleShowDetail}
+						onClick={(event) => handleShowDetail(event)}
 						link="/jewelery"
 					/>
 					<CategorySection
 						category="Men's Clothing"
 						items={menClothing}
-						onClick={handleShowDetail}
+						onClick={(event) => handleShowDetail(event)}
 						link="/men"
 					/>
 					<CategorySection
 						category="Women's Clothing"
 						items={womenClothing}
-						onClick={handleShowDetail}
+						onClick={(event) => handleShowDetail(event)}
 						link="/women"
 					/>
 				</section>

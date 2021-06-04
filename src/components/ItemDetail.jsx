@@ -10,27 +10,38 @@ import {
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './Navigation';
+import { getSuggestedQuery } from '@testing-library/dom';
 
 function ItemDetail(props) {
-	const [itemCount, setItemCount] = useState(null)
+	const [itemCount, setItemCount] = useState(0)
 	const [qty, setQty] = useState(1);
 
 	const handleAddToCart = () => {
-		setItemCount(qty)
+		const preCount = parseInt(localStorage.getItem(props.item.id))
+		localStorage.setItem(props.item.id, (qty + preCount))
+		console.log(typeof preCount, typeof qty)
+		console.log(localStorage.getItem(props.item.id))
+		setItemCount(localStorage.getItem(props.item.id))
+		// localStorage.setItem(props.item.id, 0)
 	};
+
+	const handleCountOnChange = (event) => {
+		console.log(typeof event.target.value)
+		setQty(parseInt(event.target.value))
+	}
 
 	return (
 		<>
 			<Navigation
-				itemCount={itemCount}
+				addCount={itemCount}
 			/>
 		<Container fluid >
 			<Row
 				className='mx-auto justify-content-between'
 				style={{
-					'width': '80%',
-					'height': '80vh',
-					'margin-top': '120px'
+					width: '80%',
+					height: '80vh',
+					marginTop: '120px'
 				}}
 			>
 				<Col
@@ -42,8 +53,8 @@ function ItemDetail(props) {
 					<Row className='justify-content-center mb-4'>
 						<Image
 							style={{
-								'max-width': '100%',
-								'max-height': '500px'
+								maxWidth: '100%',
+								maxHeight: '500px'
 							}}
 							src={props.item.image} rounded
 						/>
@@ -51,20 +62,20 @@ function ItemDetail(props) {
 					<Row className='d-flex justify-content-between'  >
 							<Image
 								style={{
-									'max-height': '200px',
-									'max-width': '150px'
+									maxHeight: '200px',
+									maxWidth: '150px'
 								}}
 								src={props.item.image} rounded />
 							<Image
 								style={{
-									'max-height': '200px',
-									'max-width': '150px'
+									maxHeight: '200px',
+									maxWidth: '150px'
 								}}
 								src={props.item.image} rounded />
 							<Image
 								style={{
-									'max-height': '200px',
-									'max-width': '150px'
+									maxHeight: '200px',
+									maxWidth: '150px'
 								}}
 								src={props.item.image} rounded />
 					</Row>
@@ -73,26 +84,26 @@ function ItemDetail(props) {
 					<Card
 						className='d-flex flex-column p-3'
 						style={{
-							'max-height': '750px'
+							maxHeight: '750px'
 						}}
 					>
 						<Card.Body>
 							<Card.Title
 								style={{
-									'margin-bottom': '30px',
-									'font-size': '30px'
+									marginBottom: '30px',
+									fontSize: '30px'
 									
 								}}
 							>{props.item.title}</Card.Title>
 							<Card.Subtitle
 								style={{
-									'margin-bottom': '10px',
-									'font-size': '15px'
+									marginBottom: '10px',
+									fontSize: '15px'
 								}}
 							>{props.item.category}</Card.Subtitle>
 							<Card.Text
 								style={{
-									'font-size': '30px'
+									fontSize: '30px'
 								}}
 							>${props.item.price}</Card.Text>
 							<Card.Text
@@ -101,16 +112,16 @@ function ItemDetail(props) {
 									// 'width': '100%',
 									// 'text-overflow': 'ellipsis',
 									// 'white-space': 'nowrap',
-									'overflow': 'hidden',
-									'max-height': '250px',
-									'font-size': '13px'
+									overflow: 'hidden',
+									maxHeight: '250px',
+									fontSize: '13px'
 								}}
 							>{props.item.description}</Card.Text>
 						</Card.Body>
 						<Form
 							style={{
-								'width': '180px',
-								'margin': '20px'
+								width: '180px',
+								margin: '20px'
 							}}
 						>
 							<Form.Group controlId='qty' className='w-50'>
@@ -119,7 +130,7 @@ function ItemDetail(props) {
 									size='sm'
 									type='number'
 									defaultValue={1}
-									onChange={() => setQty()}
+									onChange={(event) => handleCountOnChange(event)}
 								/>
 							</Form.Group>
 							{(props.item.category === "men's clothing" || props.item.category === "women's clothing") &&
@@ -138,9 +149,9 @@ function ItemDetail(props) {
 						</Form>
 						<Button
 							style={{
-								'width': '180px',
-								'align-self': 'flex-end',
-								'margin': '20px'
+								width: '180px',
+								alignSelf: 'flex-end',
+								margin: '20px'
 							}}
 							onClick={() => handleAddToCart()}
 						>Add to cart</Button>

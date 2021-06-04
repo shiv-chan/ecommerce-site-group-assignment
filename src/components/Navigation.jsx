@@ -10,7 +10,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 export default function Navigation(props) {
 	const [isToggle, setToggle] = useState(false);
-	const [itemCout, setItemCount] = useState(props.count)
+	const [addCount, setAddCount] = useState(props.addCount)
 
 	return (
 		<>
@@ -37,7 +37,7 @@ export default function Navigation(props) {
 							<Nav.Link href="#Men's Clothing">Men's Clothing</Nav.Link>
 							<Nav.Link href="#Women's Clothing">Women's Clothing</Nav.Link>
 							<Nav.Link id="Cart">
-								<Cart isToggle={isToggle} setToggle={setToggle} />
+								<Cart isToggle={isToggle} setToggle={setToggle} addCount={addCount}/>
 							</Nav.Link>
 							<Nav.Link id="User">
 								<FontAwesomeIcon icon={faUserCircle} />
