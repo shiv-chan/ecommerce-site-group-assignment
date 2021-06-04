@@ -4,7 +4,7 @@ import ItemCard from './ItemCard';
 import ItemDetail from './ItemDetail';
 import { Container } from 'react-bootstrap';
 
-export default function Man(props) {
+export default function Men(props) {
 	const [menClothing, setMenClothing] = useState([]);
 	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
 	const [index, setIndex] = useState('');
