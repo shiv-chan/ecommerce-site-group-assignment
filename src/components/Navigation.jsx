@@ -6,9 +6,11 @@ import Container from 'react-bootstrap/Container';
 import Cart from './Cart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { LinkContainer } from 'react-router-bootstrap';
 
-export default function Navigation() {
+export default function Navigation(props) {
 	const [isToggle, setToggle] = useState(false);
+	const [itemCout, setItemCount] = useState(props.count)
 
 	return (
 		<>
@@ -21,7 +23,9 @@ export default function Navigation() {
 					fixed="top"
 					id="navbar"
 				>
-					<Navbar.Brand href="#">Cornerstone Mart</Navbar.Brand>
+					<LinkContainer to="/">
+						<Navbar.Brand href="#">Cornerstone Mart</Navbar.Brand>
+					</LinkContainer>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse
 						id="responsive-navbar-nav"

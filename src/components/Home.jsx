@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import CategorySection from './CategorySection';
 import ItemDetail from './ItemDetail';
 import Navigation from './Navigation';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Rout,
+	Link
+} from 'react-router-dom'
 
 export default function Home() {
 	const [allData, setAllData] = useState([]);
@@ -39,7 +45,7 @@ export default function Home() {
 		allData.length === 0 ? (
 			<>
 				<header>
-					<h1>E-commerce</h1>
+					<Navigation />
 				</header>
 				<section>Loading...</section>
 			</>
@@ -58,21 +64,25 @@ export default function Home() {
 						category="Electronics"
 						items={electronics}
 						onClick={(event) => handleShowDetail(event)}
+						link="/electronics"
 					/>
 					<CategorySection
 						category="Jewelery"
 						items={jewelery}
 						onClick={handleShowDetail}
+						link="/jewelery"
 					/>
 					<CategorySection
 						category="Men's Clothing"
 						items={menClothing}
 						onClick={handleShowDetail}
+						link="/men"
 					/>
 					<CategorySection
 						category="Women's Clothing"
 						items={womenClothing}
 						onClick={handleShowDetail}
+						link="/women"
 					/>
 				</section>
 			</>
@@ -80,9 +90,9 @@ export default function Home() {
 	) : (
 		<>
 			<header>
-				<h1>E-commerce</h1>
+				<Navigation />
 			</header>
-			<ItemDetail item={allData.filter((item) => item.id == index)[0]} />
+			<ItemDetail item={allData.filter((item) => item.id === index)[0]} />
 		</>
 	);
 }
