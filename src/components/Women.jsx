@@ -7,7 +7,18 @@ import { Container } from 'react-bootstrap';
 export default function Women(props) {
 	const [womenClothing, setWomenClothing] = useState([]);
 	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
-	const [index, setIndex] = useState('');
+    const [index, setIndex] = useState('');
+    const [itemCount, setItemCount] = useState(localStorage.getItem('totalCount'))
+
+	const handleAddToCart = (event) => {
+		const total = parseInt(localStorage.getItem('totalCount'))
+		const preCount = parseInt(localStorage.getItem(event.target.offsetParent.id))
+		localStorage.setItem(event.target.offsetParent.id, (1 + preCount))
+        localStorage.setItem('totalCount', (total + 1))
+        setItemCount(total + 1)
+        // console.log(event.target.offsetParent.id)
+	};
+
 
 	function filterCategory(arr, categoryName) {
         return arr.filter((obj) => obj.category === categoryName);
@@ -65,6 +76,7 @@ export default function Women(props) {
                                 }}
                                 price={data.price}
                                 onClick={handleShowDetail}
+                                addToCart={handleAddToCart}
                             />
                         })}
 

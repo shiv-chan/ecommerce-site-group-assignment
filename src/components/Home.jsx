@@ -39,9 +39,11 @@ export default function Home() {
 		for (let i = 0; i < allData.length; i++){
 			localStorage.setItem((i+1), 0)
 		}
+		if (!localStorage.getItem('totalCount')) {
+			
+			localStorage.setItem('totalCount', 0)
+		}
 
-		localStorage.setItem('totalCount', 0)
-		
 	}, []);
 
 	return !showDetail ? (

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Wrapper, Icon, CartCount, CartSideBar, EmptyCart } from './CartStyles.jsx';
 import useOnClickOutside from './useOnClickOutside';
@@ -8,10 +8,16 @@ export default function Cart(props) {
     //handle the onclick outside 
     useOnClickOutside($sideBarRef, () => props.setToggle(false))
 
+    const [itemCount, setItemCount] = useState(props.count)
+    
+    useEffect(() => {
+        setItemCount(props.count)
+    })
+
     return <>
         <Wrapper onClick={() => props.setToggle(true)}>
             <Icon icon={faShoppingCart} />
-            <CartCount>{ props.count }</CartCount>
+            <CartCount>{ itemCount }</CartCount>
         </Wrapper>
         
         <CartSideBar ref={$sideBarRef} className={props.isToggle ? "expand" : "shrink"}>

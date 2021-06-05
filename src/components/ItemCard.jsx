@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Clamp from 'react-multiline-clamp';
 
 export default function ItemCard(props) {
-	const handleAddToCart = () => {
-		const total = parseInt(localStorage.getItem('totalCount'))
-		const preCount = parseInt(localStorage.getItem(props.id))
-		localStorage.setItem(props.id, (1 + preCount))
-		localStorage.setItem('totalCount', (total + 1))
-	};
+	
 
 	return (
 		<Card
@@ -29,20 +25,19 @@ export default function ItemCard(props) {
 				<Card.Title
 					style={{
 						'font-size': '100%',
-						'text-overflow': 'ellipsis',
-						'white-space': 'nowrap',
-						overflow: 'hidden',
 						margin: 0,
 					}}
 				>
-					{props.title}
+					<Clamp lines={2} withTooltip>
+						{props.title}
+					</Clamp>
 				</Card.Title>
 				<Card.Subtitle className="m-0 text-muted">${props.price}</Card.Subtitle>
 				<Button
 					onclick="addToCart()"
 					variant="primary"
 					className="d-block mx-auto rounded-pill"
-					onClick={() => handleAddToCart()}
+					onClick={(event)=>props.addToCart(event)}
 				>
 					Add to Cart
 				</Button>
