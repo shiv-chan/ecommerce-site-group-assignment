@@ -3,6 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 export default function ItemCard(props) {
+	const handleAddToCart = () => {
+		const total = parseInt(localStorage.getItem('totalCount'))
+		const preCount = parseInt(localStorage.getItem(props.id))
+		localStorage.setItem(props.id, (1 + preCount))
+		localStorage.setItem('totalCount', (total + 1))
+	};
+
 	return (
 		<Card
 			key={props.key}
@@ -35,6 +42,7 @@ export default function ItemCard(props) {
 					onclick="addToCart()"
 					variant="primary"
 					className="d-block mx-auto rounded-pill"
+					onClick={() => handleAddToCart()}
 				>
 					Add to Cart
 				</Button>

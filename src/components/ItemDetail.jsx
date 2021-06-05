@@ -10,19 +10,16 @@ import {
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './Navigation';
-import { getSuggestedQuery } from '@testing-library/dom';
 
 function ItemDetail(props) {
 	const [itemCount, setItemCount] = useState(0)
 	const [qty, setQty] = useState(1);
 
 	const handleAddToCart = () => {
+		const total = parseInt(localStorage.getItem('totalCount'))
 		const preCount = parseInt(localStorage.getItem(props.item.id))
 		localStorage.setItem(props.item.id, (qty + preCount))
-		console.log(typeof preCount, typeof qty)
-		console.log(localStorage.getItem(props.item.id))
-		setItemCount(localStorage.getItem(props.item.id))
-		// localStorage.setItem(props.item.id, 0)
+		localStorage.setItem('totalCount', (total + qty))
 	};
 
 	const handleCountOnChange = (event) => {
@@ -33,7 +30,7 @@ function ItemDetail(props) {
 	return (
 		<>
 			<Navigation
-				addCount={itemCount}
+				count={localStorage.getItem('totalCount')}
 			/>
 		<Container fluid >
 			<Row
@@ -46,9 +43,6 @@ function ItemDetail(props) {
 			>
 				<Col
 					md={5}
-					style={{
-						// 'height': '100%'
-					}}
 				>
 					<Row className='justify-content-center mb-4'>
 						<Image
@@ -108,10 +102,6 @@ function ItemDetail(props) {
 							>${props.item.price}</Card.Text>
 							<Card.Text
 								style={{
-									// 'display': 'inline-block',
-									// 'width': '100%',
-									// 'text-overflow': 'ellipsis',
-									// 'white-space': 'nowrap',
 									overflow: 'hidden',
 									maxHeight: '250px',
 									fontSize: '13px'

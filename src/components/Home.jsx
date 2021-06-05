@@ -39,20 +39,23 @@ export default function Home() {
 		for (let i = 0; i < allData.length; i++){
 			localStorage.setItem((i+1), 0)
 		}
+
+		localStorage.setItem('totalCount', 0)
+		
 	}, []);
 
 	return !showDetail ? (
 		allData.length === 0 ? (
 			<>
 				<header>
-					<Navigation />
+					<Navigation count={localStorage.getItem('totalCount')} />
 				</header>
 				<section>Loading...</section>
 			</>
 		) : (
 			<>
 				<header>
-					<Navigation />
+					<Navigation count={localStorage.getItem('totalCount')} />
 				</header>
 				<section
 					data-bs-spy="scroll"
@@ -89,9 +92,6 @@ export default function Home() {
 		)
 	) : (
 		<>
-			<header>
-				<Navigation />
-			</header>
 			<ItemDetail item={allData.filter((item) => item.id === index)[0]} />
 		</>
 	);

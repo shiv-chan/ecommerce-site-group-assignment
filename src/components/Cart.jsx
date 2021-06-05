@@ -4,11 +4,9 @@ import { Wrapper, Icon, CartCount, CartSideBar, EmptyCart } from './CartStyles.j
 import useOnClickOutside from './useOnClickOutside';
 
 export default function Cart(props) {
-    const [itemCount, setItemCount] = useState(0)
-
     const $sideBarRef = useRef();
     //handle the onclick outside 
-    useOnClickOutside($sideBarRef, () => props.setToggle(false));
+    useOnClickOutside($sideBarRef, () => props.setToggle(false))
 
     return <>
         <Wrapper onClick={() => props.setToggle(true)}>

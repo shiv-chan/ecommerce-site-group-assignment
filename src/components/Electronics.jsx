@@ -17,7 +17,9 @@ export default function Electronics(props) {
 	// Handle 'showDetail' status.
 	function handleShowDetail(event) {
 		setIndex(event.currentTarget.id);
-        setShowDetail(!showDetail);
+		if (event.target.localName !== 'button') {
+			setShowDetail(!showDetail)
+		}
 	}
 
 	useEffect(() => {
@@ -33,14 +35,14 @@ export default function Electronics(props) {
         electronics.length === 0 ? (
                 <>
                     <header>
-                        <Navigation />
+                        <Navigation count={localStorage.getItem('totalCount')} />
                     </header>
                     <section>Loading...</section>
                 </>
             ) : (
                 <>
                     <header>
-                        <Navigation />
+                        <Navigation count={localStorage.getItem('totalCount')} />
                     </header>
                     <Container
                         style={{
