@@ -11,6 +11,16 @@ export default function Home() {
 	const [womenClothing, setWomenClothing] = useState([]);
 	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
 	const [index, setIndex] = useState('');
+	const [itemCount, setItemCount] = useState(localStorage.getItem('totalCount'))
+
+	const handleAddToCart = (event) => {
+		const total = parseInt(localStorage.getItem('totalCount'))
+		const preCount = parseInt(localStorage.getItem(event.target.offsetParent.id))
+		localStorage.setItem(event.target.offsetParent.id, (1 + preCount))
+        localStorage.setItem('totalCount', (total + 1))
+        setItemCount(total + 1)
+        // console.log(event.target.offsetParent.id)
+	};
 
 	function filterCategory(arr, categoryName) {
 		return arr.filter((obj) => obj.category === categoryName);
@@ -50,14 +60,14 @@ export default function Home() {
 		allData.length === 0 ? (
 			<>
 				<header>
-					<Navigation count={localStorage.getItem('totalCount')} />
+					<Navigation count={itemCount} />
 				</header>
 				<section>Loading...</section>
 			</>
 		) : (
 			<>
 				<header>
-					<Navigation count={localStorage.getItem('totalCount')} />
+					<Navigation count={itemCount} />
 				</header>
 				<section
 					data-bs-spy="scroll"
@@ -70,24 +80,28 @@ export default function Home() {
 						items={electronics}
 						onClick={(event) => handleShowDetail(event)}
 						link="/electronics"
+						addToCart={handleAddToCart}
 					/>
 					<CategorySection
 						category="Jewelery"
 						items={jewelery}
 						onClick={(event) => handleShowDetail(event)}
 						link="/jewelery"
+						addToCart={handleAddToCart}
 					/>
 					<CategorySection
 						category="Men's Clothing"
 						items={menClothing}
 						onClick={(event) => handleShowDetail(event)}
 						link="/men"
+						addToCart={handleAddToCart}
 					/>
 					<CategorySection
 						category="Women's Clothing"
 						items={womenClothing}
 						onClick={(event) => handleShowDetail(event)}
 						link="/women"
+						addToCart={handleAddToCart}
 					/>
 				</section>
 			</>
