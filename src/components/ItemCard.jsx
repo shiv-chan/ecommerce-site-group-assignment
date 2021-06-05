@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Clamp from 'react-multiline-clamp';
 
 export default function ItemCard(props) {
 	return (
@@ -22,13 +23,12 @@ export default function ItemCard(props) {
 				<Card.Title
 					style={{
 						'font-size': '100%',
-						'text-overflow': 'ellipsis',
-						'white-space': 'nowrap',
-						overflow: 'hidden',
 						margin: 0,
 					}}
 				>
-					{props.title}
+					<Clamp lines={2} withTooltip>
+						{props.title}
+					</Clamp>
 				</Card.Title>
 				<Card.Subtitle className="m-0 text-muted">${props.price}</Card.Subtitle>
 				<Button
