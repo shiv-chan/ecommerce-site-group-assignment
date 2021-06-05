@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import ItemCard from './ItemCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +7,17 @@ import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 export default function CategorySection(props) {
+	const [itemCount, setItemCount] = useState(localStorage.getItem('totalCount'))
+
+	const handleAddToCart = (event) => {
+		const total = parseInt(localStorage.getItem('totalCount'))
+		const preCount = parseInt(localStorage.getItem(event.target.offsetParent.id))
+		localStorage.setItem(event.target.offsetParent.id, (1 + preCount))
+        localStorage.setItem('totalCount', (total + 1))
+        setItemCount(total + 1)
+        // console.log(event.target.offsetParent.id)
+	};
+
 	// pick unique three number, and return them as an array
 	function randThreeNums(items) {
 		if (items.length !== 0) {
@@ -44,6 +55,7 @@ export default function CategorySection(props) {
 										}}
 										price={props.items[num].price}
 										onClick={props.onClick}
+										addToCart={handleAddToCart}
 									/>
 								</Col>
 							);
