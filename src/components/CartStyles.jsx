@@ -63,6 +63,7 @@ export const SideBarHeader = styled.div`
   text-transform: uppercase;
   position: relative;
   padding: 15px 0;
+  color: black;
   &:after {
     content: "";
     position: absolute;
@@ -73,3 +74,23 @@ export const SideBarHeader = styled.div`
     background: #000000;
   }
 `;
+
+export const CardBody = styled.div`
+  flex: 2;
+  margin-left: 25px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  color:black;
+  font-size: 14px;
+  padding: 20px;
+`;
+
+export const CardImage = styled.img`
+  flex: 1;
+  height: auto;
+  width: auto;
+  max-width: 100px;
+  max-height: 100px;
+`;
+

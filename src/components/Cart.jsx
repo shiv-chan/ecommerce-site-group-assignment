@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { Wrapper, Icon, CartCount, CartSideBar, EmptyCart } from './CartStyles.jsx';
+import { Wrapper, Icon, CartCount, CartSideBar, EmptyCart, SideBarHeader, CardBody } from './CartStyles.jsx';
 import useOnClickOutside from './useOnClickOutside';
 
-export default function Cart({ isToggle, setToggle }) {
+export default function Cart({ isToggle, setToggle, cart }) {
     const [itemCount, setItemCount] = useState(0)
 
     const $sideBarRef = useRef();
@@ -13,12 +13,22 @@ export default function Cart({ isToggle, setToggle }) {
     return <>
         <Wrapper onClick={() => setToggle(true)}>
             <Icon icon={faShoppingCart} />
-            <CartCount>{ itemCount }</CartCount>
+            <CartCount>{ cart.length }</CartCount>
         </Wrapper>
         
         <CartSideBar ref={$sideBarRef} className={isToggle ? "expand" : "shrink"}>
-            <sideBarHeader>Shppoing Cart</sideBarHeader>
-            <EmptyCart>Empty Cart</EmptyCart>
+            <SideBarHeader>Shppoing Cart</SideBarHeader>
+                {/* <EmptyCart>Empty Cart</EmptyCart> */}
+
+            {
+                cart.map((o,i)=>{
+                    return (
+                        <CardBody key={i}>
+                            {o.title}
+                            </CardBody>
+                    )
+                })
+            }
         </CartSideBar>
     </>
 }

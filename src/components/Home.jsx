@@ -9,14 +9,16 @@ import {
 	Link
 } from 'react-router-dom'
 
+
 export default function Home() {
-	const [allData, setAllData] = useState([]);
+	const [allData, setAllData] = useState(['1','2']);
 	const [electronics, setElectronics] = useState([]);
 	const [jewelery, setJewelery] = useState([]);
 	const [menClothing, setMenClothing] = useState([]);
 	const [womenClothing, setWomenClothing] = useState([]);
 	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
 	const [index, setIndex] = useState('');
+	const [cart, setCart] = useState([]);
 
 	function filterCategory(arr, categoryName) {
 		return arr.filter((obj) => obj.category === categoryName);
@@ -52,7 +54,7 @@ export default function Home() {
 		) : (
 			<>
 				<header>
-					<Navigation />
+					<Navigation cart={cart} />
 				</header>
 				<section
 					data-bs-spy="scroll"
@@ -65,6 +67,8 @@ export default function Home() {
 						items={electronics}
 						onClick={(event) => handleShowDetail(event)}
 						link="/electronics"
+						setCart={setCart}
+						cart={cart}
 					/>
 					<CategorySection
 						category="Jewelery"

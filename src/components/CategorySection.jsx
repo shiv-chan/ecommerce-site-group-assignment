@@ -43,7 +43,12 @@ export default function CategorySection(props) {
 											'object-fit': 'contain',
 										}}
 										price={props.items[num].price}
-										onClick={props.onClick}
+										onClick={()=>{
+											var arr = props.cart.concat({title:props.items[num].title, price:props.items[num].price,
+												id:props.items[num].id});
+											props.setCart(arr);
+										}}
+										// onClick={props.onClick}
 									/>
 								</Col>
 							);
