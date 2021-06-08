@@ -51,7 +51,7 @@ export default function CategorySection(props) {
 					  })
 					: ''}
 				<Col className="align-self-center text-center">
-					<Link to={props.link}>See More</Link>
+					<Link to={`/category/${props.link}`}>See More</Link>
 				</Col>
 			</Row>
 		</section>
