@@ -46,9 +46,10 @@ export default function Home() {
 			})
 			.catch((err) => console.error(`Fetch Error: ${err}`));
 		
-		for (let i = 0; i < allData.length; i++){
-			localStorage.setItem((i+1), 0)
-		}
+			for (let i = 0; i < allData.length; i++){
+				localStorage.setItem((i+1), 0)
+			}
+			// Set and reset every count depends on 'totalCount'.
 		if (!localStorage.getItem('totalCount')) {
 			
 			localStorage.setItem('totalCount', 0)
@@ -60,14 +61,14 @@ export default function Home() {
 		allData.length === 0 ? (
 			<>
 				<header>
-					<Navigation count={itemCount} />
+					<Navigation count={itemCount} data={allData} />
 				</header>
 				<section>Loading...</section>
 			</>
 		) : (
 			<>
 				<header>
-					<Navigation count={itemCount} />
+						<Navigation count={itemCount} data={allData}/>
 				</header>
 				<section
 					data-bs-spy="scroll"

@@ -36,7 +36,7 @@ export default function Navigation(props) {
 							<Nav.Link href="#Men's Clothing">Men's Clothing</Nav.Link>
 							<Nav.Link href="#Women's Clothing">Women's Clothing</Nav.Link>
 							<Nav.Link id="Cart">
-								<Cart isToggle={isToggle} setToggle={setToggle} count={props.count}/>
+								<Cart isToggle={isToggle} setToggle={setToggle} count={props.count} data={props.data}/>
 							</Nav.Link>
 							<Nav.Link id="User">
 								<FontAwesomeIcon icon={faUserCircle} />
