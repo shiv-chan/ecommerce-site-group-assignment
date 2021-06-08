@@ -7,7 +7,17 @@ import { Container } from 'react-bootstrap';
 export default function Electronics(props) {
 	const [electronics, setElectronics] = useState([]);
 	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
-	const [index, setIndex] = useState('');
+    const [index, setIndex] = useState('');
+    const [itemCount, setItemCount] = useState(localStorage.getItem('totalCount'))
+
+	const handleAddToCart = (event) => {
+		const total = parseInt(localStorage.getItem('totalCount'))
+		const preCount = parseInt(localStorage.getItem(event.target.offsetParent.id))
+		localStorage.setItem(event.target.offsetParent.id, (1 + preCount))
+        localStorage.setItem('totalCount', (total + 1))
+        setItemCount(total + 1)
+        // console.log(event.target.offsetParent.id)
+	};
 
 	function filterCategory(arr, categoryName) {
         return arr.filter((obj) => obj.category === categoryName);
@@ -17,7 +27,9 @@ export default function Electronics(props) {
 	// Handle 'showDetail' status.
 	function handleShowDetail(event) {
 		setIndex(event.currentTarget.id);
-        setShowDetail(!showDetail);
+		if (event.target.localName !== 'button') {
+			setShowDetail(!showDetail)
+		}
 	}
 
 	useEffect(() => {
@@ -33,14 +45,14 @@ export default function Electronics(props) {
         electronics.length === 0 ? (
                 <>
                     <header>
-                        <Navigation />
+                        <Navigation count={itemCount} />
                     </header>
                     <section>Loading...</section>
                 </>
             ) : (
                 <>
                     <header>
-                        <Navigation />
+                        <Navigation count={itemCount} />
                     </header>
                     <Container
                         style={{
@@ -63,6 +75,7 @@ export default function Electronics(props) {
                                 }}
                                 price={data.price}
                                 onClick={handleShowDetail}
+                                addToCart={handleAddToCart}
                             />
                         })}
 

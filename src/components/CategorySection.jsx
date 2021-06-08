@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import ItemCard from './ItemCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -44,6 +44,7 @@ export default function CategorySection(props) {
 										}}
 										price={props.items[num].price}
 										onClick={props.onClick}
+										addToCart={props.addToCart}
 									/>
 								</Col>
 							);
