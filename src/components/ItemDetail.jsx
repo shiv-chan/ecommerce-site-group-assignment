@@ -13,20 +13,24 @@ import Navigation from './Navigation';
 import Clamp from 'react-multiline-clamp';
 
 function ItemDetail(props) {
+	const [item, setItem] = useState(JSON.parse(localStorage.getItem('allData')).filter(obj => obj.id.toString() === props.match.params.id)[0])
 	const [itemCount, setItemCount] = useState(localStorage.getItem('totalCount'))
 	const [qty, setQty] = useState(1);
 
 	const handleAddToCart = () => {
-		const total = parseInt(localStorage.getItem('totalCount'))
-		const preCount = parseInt(localStorage.getItem(props.item.id))
-		localStorage.setItem(props.item.id, (qty + preCount))
+		const total = parseInt(localStorage.getItem('totalCount'));
+		const preCount = parseInt(localStorage.getItem(item.id));
+		localStorage.setItem(item.id, (qty + preCount))
 		localStorage.setItem('totalCount', (total + qty))
 		setItemCount((total + qty))
+		console.log(preCount)
 	};
 
 	const handleCountOnChange = (event) => {
 		setQty(parseInt(event.target.value))
 	}
+
+	console.log(props)
 
 	return (
 		<>
@@ -47,7 +51,7 @@ function ItemDetail(props) {
 									maxWidth: '100%',
 									maxHeight: '500px'
 								}}
-								src={props.item.image} rounded
+								src={item.image} rounded
 							/>
 						</Row>
 						<Row className='d-flex justify-content-between'  >
@@ -56,7 +60,7 @@ function ItemDetail(props) {
 										maxHeight: '200px',
 										maxWidth: '150px'
 									}}
-									src={props.item.image}
+									src={item.image}
 									rounded
 								/>
 								<Image
@@ -64,7 +68,7 @@ function ItemDetail(props) {
 										maxHeight: '200px',
 										maxWidth: '150px'
 									}}
-									src={props.item.image}
+									src={item.image}
 									rounded
 								/>
 								<Image
@@ -72,7 +76,7 @@ function ItemDetail(props) {
 										maxHeight: '200px',
 										maxWidth: '150px'
 									}}
-									src={props.item.image} rounded />
+									src={item.image} rounded />
 						</Row>
 					</Col>
 					<Col md={6}>
@@ -89,7 +93,7 @@ function ItemDetail(props) {
 										'font-size': '30px',
 									}}
 								>
-									{props.item.title}
+									{item.title}
 								</Card.Title>
 								<Card.Subtitle
 									style={{
@@ -97,14 +101,14 @@ function ItemDetail(props) {
 										'font-size': '15px',
 									}}
 								>
-									{props.item.category}
+									{item.category}
 								</Card.Subtitle>
 								<Card.Text
 									style={{
 										'font-size': '30px',
 									}}
 								>
-									${props.item.price}
+									${item.price}
 								</Card.Text>
 								<Card.Text
 									style={{
@@ -117,7 +121,7 @@ function ItemDetail(props) {
 										withToggle
 										texts={{ showMore: 'show more', showLess: 'show less' }}
 									>
-										{props.item.description}
+										{item.description}
 									</Clamp>
 								</Card.Text>
 							</Card.Body>
@@ -136,8 +140,8 @@ function ItemDetail(props) {
 										onChange={(event) => handleCountOnChange(event)}
 									/>
 								</Form.Group>
-								{(props.item.category === "men's clothing" ||
-									props.item.category === "women's clothing") && (
+								{(item.category === "men's clothing" ||
+									item.category === "women's clothing") && (
 									<Form.Group controlId="size">
 										<Form.Label>Size: </Form.Label>
 										<Form.Control as="select" size="sm" defaultValue="m">

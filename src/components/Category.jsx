@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import ItemCard from './ItemCard';
-import ItemDetail from './ItemDetail';
 import { Container } from 'react-bootstrap';
 
-export default function Electronics(props) {
-	const [electronics, setElectronics] = useState([]);
-	const [showDetail, setShowDetail] = useState(false); // Switch with detail page.
-    const [index, setIndex] = useState('');
+export default function Category(props) {
+	const [items, setItems] = useState(JSON.parse(localStorage.getItem('allData')).filter(obj => obj.category === props.match.params.section));
     const [itemCount, setItemCount] = useState(localStorage.getItem('totalCount'))
 
 	const handleAddToCart = (event) => {
@@ -16,33 +13,9 @@ export default function Electronics(props) {
 		localStorage.setItem(event.target.offsetParent.id, (1 + preCount))
         localStorage.setItem('totalCount', (total + 1))
         setItemCount(total + 1)
-        // console.log(event.target.offsetParent.id)
 	};
 
-	function filterCategory(arr, categoryName) {
-        return arr.filter((obj) => obj.category === categoryName);
-        
-	}
-
-	// Handle 'showDetail' status.
-	function handleShowDetail(event) {
-		setIndex(event.currentTarget.id);
-		if (event.target.localName !== 'button') {
-			setShowDetail(!showDetail)
-		}
-	}
-
-	useEffect(() => {
-		fetch('https://fakestoreapi.com/products')
-			.then((res) => res.json())
-			.then((json) => {
-				setElectronics(filterCategory(json, 'electronics'));
-			})
-            .catch((err) => console.error(`Fetch Error: ${err}`));
-	}, []);
-
-    return !showDetail ? (
-        electronics.length === 0 ? (
+    return items.length === 0 ? (
                 <>
                     <header>
                         <Navigation count={itemCount} />
@@ -53,16 +26,17 @@ export default function Electronics(props) {
                 <>
                     <header>
                         <Navigation count={itemCount} />
-                    </header>
+                </header>
+                <h1 style={{margin: '100px 50px 50px', textTransform: 'capitalize'}}>{ props.match.params.section}</h1>
                     <Container
                         style={{
                             'display': 'grid',
                             'grid-template-columns': '1fr 1fr 1fr',
                             'grid-gap': '10px',
-                            'margin-top': '100px'
+                            // 'margin-top': '100px'
                         }}
                     >
-                        {electronics.map(data => {
+                        {items.map(data => {
                             return <ItemCard
                                 key={data.id}
                                 id={data.id}
@@ -74,7 +48,6 @@ export default function Electronics(props) {
                                     'object-fit': 'contain',
                                 }}
                                 price={data.price}
-                                onClick={handleShowDetail}
                                 addToCart={handleAddToCart}
                             />
                         })}
@@ -83,10 +56,4 @@ export default function Electronics(props) {
     
                 </>
             )
-        
-	    ) : (
-            <>
-                <ItemDetail item={electronics.filter((item) => item.id == index)[0]} />
-            </>
-        );
 }

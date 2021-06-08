@@ -23,7 +23,7 @@ export default function Navigation(props) {
 					id="navbar"
 				>
 					<LinkContainer to="/">
-						<Navbar.Brand href="#">Cornerstone Mart</Navbar.Brand>
+						<Navbar.Brand href="/">Cornerstone Mart</Navbar.Brand>
 					</LinkContainer>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse
@@ -31,10 +31,10 @@ export default function Navigation(props) {
 						style={{ textAlign: 'left' }}
 					>
 						<Nav className="me-auto">
-							<Nav.Link href="#Electronics">Electronics</Nav.Link>
-							<Nav.Link href="#Jewelery">Jewelery</Nav.Link>
-							<Nav.Link href="#Men's Clothing">Men's Clothing</Nav.Link>
-							<Nav.Link href="#Women's Clothing">Women's Clothing</Nav.Link>
+							<Nav.Link href="/category/electronics">Electronics</Nav.Link>
+							<Nav.Link href="/category/jewelery">Jewelery</Nav.Link>
+							<Nav.Link href="/category/men's clothing">Men's Clothing</Nav.Link>
+							<Nav.Link href="/category/women's clothing">Women's Clothing</Nav.Link>
 							<Nav.Link id="Cart">
 								<Cart isToggle={isToggle} setToggle={setToggle} count={props.count} data={props.data}/>
 							</Nav.Link>
